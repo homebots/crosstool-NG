@@ -1,38 +1,27 @@
-# Crosstool-NG [![Build Status][travis-status]][travis]
+# Crosstool-NG
 
-Crosstool-NG follows the `autoconf` dance. So, to get you
-kick-started, just run:
+## Usage
+
+Crosstool-NG follows the `autoconf` dance. So, to get you kick-started, just run:
 
     ./configure --help
 
-If you are using a development snapshot, you'll have to
-create the configure script, first. Just run:
+If you are using a development snapshot, you'll have to create the configure script, first. Just run:
 
     ./bootstrap
 
 You will find the documentation in the directory `docs`.
-Here is a quick overview of what you'll find there:
 
-<ol start="0">
-	<li>Table of content</li>
-	<li>Introduction</li>
-	<li>Installing crosstool-NG</li>
-	<li>Configuring a toolchain</li>
-	<li>Building the toolchain</li>
-	<li>Using the toolchain</li>
-	<li>Toolchain types</li>
-	<li>Contributing</li>
-	<li>Internals</li>
-</ol>
-<ol type="A">
-	<li>Credits</li>
-	<li>Known issues</li>
-	<li>Misc. tutorials</li>
-</ol>
+To build in one go, run the following:
 
-You can also point your browser at: http://crosstool-ng.org
+```
+./bootstrap && ./configure --prefix=`pwd` && make MAKELEVEL=0 && make install MAKELEVEL=0
+```
 
-Aloha!
+## Using docker
 
-[travis-status]: https://travis-ci.org/crosstool-ng/crosstool-ng.svg
-[travis]: https://travis-ci.org/crosstool-ng/crosstool-ng
+This fork of crosstool-NG add a Docker image so you can download the final build without the hassle of a looong compile time.
+
+```
+docker run --rm -it -v $PWD:/home/project homebotz/crosstool-ng
+```

@@ -1,7 +1,7 @@
-FROM darlanalves/debian-dev
+FROM homebotz/debian-dev
 
-WORKDIR /home/target
-ADD . /home/target
+WORKDIR /home/crosstool
+ADD . /home/crosstool
 RUN ./bootstrap && ./configure --prefix=`pwd` && make MAKELEVEL=0 && make install MAKELEVEL=0
 ENV CT_EXPERIMENTAL=y
 ENV CT_ALLOW_BUILD_AS_ROOT=y
@@ -14,3 +14,5 @@ RUN ct-ng xtensa-lx106-elf && \
   cat crosstool-config-overrides >> .config
 
 RUN ct-ng build
+RUN mkdir /home/project
+WORKDIR /home/project
