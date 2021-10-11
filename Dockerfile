@@ -6,8 +6,8 @@ RUN ./bootstrap && ./configure --prefix=`pwd` && make MAKELEVEL=0 && make instal
 ENV CT_EXPERIMENTAL=y
 ENV CT_ALLOW_BUILD_AS_ROOT=y
 ENV CT_ALLOW_BUILD_AS_ROOT_SURE=y
-ENV PATH=/home/target:$PATH
-ENV TOOLCHAIN="$PWD/xtensa-lx106-elf"
+ENV PATH=/home/crosstool:$PATH
+ENV TOOLCHAIN="/home/crosstool/xtensa-lx106-elf"
 RUN ct-ng xtensa-lx106-elf && \
   sed -r -i.org s%CT_PREFIX_DIR=.*%CT_PREFIX_DIR="$TOOLCHAIN"% .config && \
   sed -r -i s%CT_INSTALL_DIR_RO=y%"#"CT_INSTALL_DIR_RO=y% .config && \
