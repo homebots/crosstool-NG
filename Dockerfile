@@ -11,6 +11,7 @@ ENV TOOLCHAIN="/home/crosstool/xtensa-lx106-elf"
 RUN ct-ng xtensa-lx106-elf && \
   sed -r -i.org s%CT_PREFIX_DIR=.*%CT_PREFIX_DIR="$TOOLCHAIN"% .config && \
   sed -r -i s%CT_INSTALL_DIR_RO=y%"#"CT_INSTALL_DIR_RO=y% .config && \
+  sed 's/CT_LOG_PROGRESS_BAR/# CT_LOG_PROGRESS_BAR/' -i .config && \
   cat crosstool-config-overrides >> .config
 
 RUN ct-ng build
