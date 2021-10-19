@@ -14,6 +14,9 @@ RUN ct-ng xtensa-lx106-elf && \
   sed 's/CT_LOG_PROGRESS_BAR/# CT_LOG_PROGRESS_BAR/' -i .config && \
   cat crosstool-config-overrides >> .config
 
+RUN apt update && apt install -y python
 RUN ct-ng build
+RUN apt remove -y python
 RUN mkdir /home/project
 WORKDIR /home/project
+ENV PATH=/home/crosstool/xtensa-lx106-elf/xtensa-lx106-elf/bin:/home/crosstool/xtensa-lx106-elf/bin:$PATH
